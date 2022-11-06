@@ -1,0 +1,441 @@
+@charset "UTF-8";
+/*
+
+  Con este reset vamos a resolver:
+    👉 Unificar el uso de Custom Properties
+    👉 Problemas de box-model más generales
+    👉 Problemas con imagenes, vídeos e iconos svg
+    👉 Problemas con tipografías y etiquetas input en formularios
+    👉 Unificar la tipografía de todas las etiquetas de una web
+
+*/
+/* Aquí definimos las Custom properties */
+@import url(//db.onlinewebfonts.com/c/4757002a7140fc6b140966540d8b3f3a?family=F37+Bergman+Bold);
+:root {
+  --Negro: #121317;
+  --Blanco: #EAE9E3;
+  --Negro7: rgb(0, 0, 0,0.7);
+  --Negro5: rgba(0, 0, 0, 0.5);
+  --Gris: rgb(86, 86, 90) ;
+  /* Tipografía */
+  --tipo-titulo:'F37 Bergman Bold',sans-serif;
+  --tipo-titulo2: 'Bebas Neue', cursive;
+  --tipo-titulo3: 'Barlow Condensed', sans-serif;;
+  --tipo-principal: 'PT Serif', serif;
+  --tipo-secundaria: 'Forum', cursive;
+}
+@media screen and (prefers-color-scheme: light){
+  :root{
+    --Negro: #EAE9E3;
+    --Blanco: #121317;
+    --Negro7: rgba(255, 255, 255, 0.7);
+    --Negro5: rgba(255, 255, 255, 0.5);
+    --Gris: rgb(18, 18, 20) ;
+  }
+}
+@media screen and (prefers-color-scheme: dark){
+  :root{
+    --Negro: #121317;
+  --Blanco: #EAE9E3;
+  --Negro7: rgb(0, 0, 0,0.7);
+  --Negro5: rgba(0, 0, 0, 0.5);
+  --Gris: rgb(86, 86, 90) ;
+  }
+}
+/* Opcional */
+/* Configuramos si un usuario ha activado el modo alto contraste. (WD) */
+/* Opcional */
+/* Desactivamos los animations en el caso de que el usuario haya configurado el modo sin animation */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    -webkit-animation: none !important;
+            animation: none !important;
+    -webkit-transition: none !important;
+    transition: none !important;
+  }
+}
+/* Reseteamos los margin y paddings de todas las etiquetas */
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  vertical-align: baseline;
+}
+
+/* Evitamos problemas con las imagenes */
+img, picture, video, iframe, figure {
+  max-width: 100%;
+  width: 100%;
+  display: flex;
+  /* opcional */
+  -o-object-fit: cover;
+     object-fit: cover;
+  /* opcional */
+  -o-object-position: center center;
+     object-position: center center;
+}
+
+/* Reseteamos los enlaces para funcionar como cajas... */
+a {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  font-size: inherit;
+}
+
+/* ... excepto los que se encuentran en párrafos */
+p a {
+  display: inline;
+}
+
+/* Quitamos los puntos de los <li> */
+li {
+  list-style-type: none;
+}
+
+/* Configuramos anclas suaves */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Desactivamos estilos por defecto de las principales etiquetas de texto */
+h1, h2, h3, h4, h5, h6, p, span, a, strong, blockquote, i, b, u, em {
+
+  font-size: 1em;
+  font-weight: inherit;
+  font-style: inherit;
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Evitamos problemas con los pseudoelementos de quotes */
+blockquote:before, blockquote:after, q:before, q:after {
+  content: "";
+  content: none;
+}
+
+/* Configuramos el texto que seleccionamos */
+::-moz-selection {
+  background-color: var(--Negro);
+  color: var(--Blanco);
+}
+::selection {
+  background-color: var(--Negro);
+  color: var(--Blanco);
+}
+
+/* Nivelamos problemas de tipografías y colocación de formularios */
+form, input, textarea, select, button, label {
+  font-family: inherit;
+  font-size: inherit;
+  -webkit-hyphens: auto;
+      -ms-hyphens: auto;
+          hyphens: auto;
+  background-color: transparent;
+  color: inherit;
+  display: flex;
+  /* opcional */
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+}
+
+/* Reseteamos las tablas */
+table, tr, td {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* Evitamos problemas con los SVG */
+svg {
+  width: 100%;
+  display: flex;
+  fill: currentColor;
+}
+
+/* (Probándolo, no usar en producción) En el caso de añadir una  */
+/* p svg{
+  display: inline;
+  width: initial;
+} */
+/* Configuramos la tipografía para toda la web */
+body {
+  min-height: 100vh;
+  font-size: 100%;
+  font-family: var(--tipo-principal);
+  background-color: var(--Negro);
+  font-smooth: always;
+  /* opcional */
+  -webkit-font-smoothing: antialiased;
+  /* opcional */
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.circulos{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: var(--Negro);
+  z-index: 1;
+  filter: blur(25px);
+  animation: circulo1 100s linear infinite both;
+  
+}
+.circulos .circulo{
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  animation: circulo1 100s linear infinite both;
+}
+.circulos .circulo .path{
+fill:var(--Gris);
+}
+
+.circulos .circulo1{
+  top: 0%;
+  left: 0%;
+  
+}
+
+.circulos .circulo2{
+  top: 0%;
+  right: 0%;
+ 
+}
+.circulos .circulo3{
+  bottom: 0%;
+  left: 0%;
+ 
+}
+.circulos .circulo4{
+  bottom: 0%;
+  right: 0%;
+ 
+}
+
+.header{
+  width: 100%;
+  min-height: 5em;
+  
+  padding: 1em 2em;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+  display: none;
+}
+.header .ul{
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+.header .li{
+  margin: 0 1em;
+}
+.header .li .a{
+  cursor: none;
+}
+
+.main{
+  margin: 0 0 1em;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  background: var(--Negro7);
+}
+.seccion{
+  width: 100%;
+  min-height: 80vh;
+  padding: 2em 0;
+  
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.seccion .info{
+  font-size: 1.2em;
+ animation: rise1 2s ease 1 both;
+}
+
+.seccion .h2{
+
+  font-family: var(--tipo-titulo);
+  font-weight: inherit;
+  font-size: 4em;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--Blanco);
+  
+}
+.seccion .h3{ 
+
+  font-family: var(--tipo-secundaria);
+  font-size: 2em;
+  padding: 2em 0 8em 0;
+  text-align: center;
+  color: var(--Blanco);
+  
+}
+.seccion .p{}
+
+
+.seccion .grid{
+  width: 90%;
+  margin: 1em 0;
+  max-width: 80em;
+  display: grid;
+  grid-template-columns: repeat( auto-fit , minmax(15rem, 1fr));
+  gap: 1em;
+ 
+}
+.seccion .article{
+  width: 100%;
+  min-height: 20vh;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  border-radius: 1em;
+
+}
+.seccion .a{
+  cursor: none;
+}
+.seccion .figure{
+  width: 100%;
+  background: red;
+}
+.seccion .img{
+  width: 100%;
+  background: greenyellow;
+}
+.seccion .h4{
+
+  width: 100%;
+  height: 100%;
+  background-color: var(--Negro5);
+  backdrop-filter: blur(1rem);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+
+  color: var(--Blanco);
+  font-size: 2em;
+  font-family: var(--tipo-secundaria);
+  opacity: 0; 
+  transform: translateZ(1) scale(1.2);
+  transition: all .5s ease;
+
+}
+.seccion .article:hover .h4{
+  opacity: 1;
+  transform: translateZ(1) scale(1.1);
+}
+.works{
+  background: var(--Blanco);
+  box-shadow: 0 0 2em 3em var(--Blanco);
+}
+.works .h2{
+  margin: 0 0 2rem;
+  color: var(--Negro);
+}
+.works .p{
+  font-family: var(--tipo-secundaria);
+  font-size: 1.5em;
+  color: var(--Negro);
+}
+.about {}
+.about .h2{
+  margin: 0 0 1em; 
+}
+.about .p{
+  /*background: greenyellow;*/
+  color: var(--Blanco);
+  margin: 0 0 2em;
+  font-family: var(--tipo-secundaria);
+  font-size: 1.5em;
+  text-align: center;
+  max-width: 70rem;
+  flex-wrap: wrap;
+  overflow-wrap: break-word;
+}
+.about .rrss{
+  width: 100%;
+display: flex;
+flex-flow: row wrap;
+justify-content: center;
+align-items: center;
+}
+.about .li{
+  margin: 0 1em;
+}
+.about .a{
+  cursor: none;
+}
+.about .svg{
+  width: em;
+  height: 4em;
+}
+.about .svg .path{
+  fill: var(--Blanco);
+}
+.footer{
+
+  font-family: var(--tipo-titulo);
+  font-size: 1em;
+  position: relative;
+  z-index: 2;
+  padding: 1em 0;
+  text-align: center;
+}
+.footer .span{
+
+}
+
+@keyframes circulo1{
+  from{ 
+    transform: rotate(0deg) scale(1);
+  }
+  to{
+    transform: rotate(360deg) scale(1);
+  }
+}
+@keyframes rise1 {
+  from {
+   opacity: 0;
+   transform: translateY(50%);
+  }
+  to{
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+#cursor{
+  width: 5em;
+  height: 5em;
+  background-color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  pointer-events: none;
+  border-radius: 50%;
+  mix-blend-mode: difference;
+}
+#cursor.mini{
+transform: scale(0.7);
+
+}
